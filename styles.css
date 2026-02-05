@@ -2760,3 +2760,26 @@ section>.container {
         /* Reduce distraction on mobile */
     }
 }
+
+/* ============================================
+   GALLERY IMAGE RESPONSIVE
+   ============================================ */
+.gallery-image-real {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.gallery-image-real img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover .gallery-image-real img {
+    transform: scale(1.1);
+}
