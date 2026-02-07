@@ -17,7 +17,33 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeBackToTop();
     initializeSmoothScroll();
     initializeEcoIcons(); // Add eco icons to sections
+    initializeAudioControl(); // Initialize audio toggle for hero video
 });
+
+// ============================================
+// AUDIO CONTROL
+// ============================================
+
+function initializeAudioControl() {
+    const video = document.getElementById('heroVideo');
+    const audioBtn = document.getElementById('audioToggle');
+
+    if (!video || !audioBtn) return;
+
+    audioBtn.addEventListener('click', function () {
+        if (video.muted) {
+            video.muted = false;
+            audioBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            audioBtn.style.background = 'var(--primary-green)';
+            audioBtn.style.borderColor = 'var(--white)';
+        } else {
+            video.muted = true;
+            audioBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            audioBtn.style.background = 'rgba(0, 0, 0, 0.6)';
+            audioBtn.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+        }
+    });
+}
 
 // ============================================
 // NAVIGATION

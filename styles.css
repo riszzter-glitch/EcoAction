@@ -246,6 +246,8 @@ ul {
     box-shadow: var(--shadow-lg);
 }
 
+
+
 /* ============================================
    HERO SECTION
    ============================================ */
@@ -329,6 +331,99 @@ ul {
     flex-wrap: wrap;
     margin-bottom: var(--spacing-2xl);
     animation: fadeInUp 0.8s ease 0.4s backwards;
+}
+
+/* Inline Video Styling */
+.hero-video-wrapper {
+    margin: var(--spacing-md) auto var(--spacing-xl);
+    max-width: 700px;
+    /* Batasi lebar di desktop agar rapi */
+    width: 100%;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    transform: translateZ(0);
+    /* Hardware acceleration fix */
+}
+
+.hero-video-inline {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.video-caption-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 80px;
+    /* Jarak untuk tombol audio */
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--white);
+    padding: 12px 20px;
+    border-radius: var(--radius-lg);
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.4;
+    backdrop-filter: blur(8px);
+    border-left: 4px solid var(--primary-green);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+    transition: all 0.3s ease;
+}
+
+.video-caption-overlay:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: translateY(-2px);
+}
+
+.audio-control-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--white);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.audio-control-btn:hover {
+    background: var(--primary-green);
+    transform: scale(1.1);
+    border-color: var(--white);
+}
+
+.audio-control-btn i {
+    font-size: 1.2rem;
+}
+
+/* Responsiveness for Video */
+@media (max-width: 768px) {
+    .hero-video-wrapper {
+        margin: var(--spacing-sm) auto var(--spacing-lg);
+        border-width: 2px;
+        border-radius: var(--radius-lg);
+    }
+
+    .video-caption-overlay {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+        bottom: 15px;
+        left: 15px;
+        right: 70px;
+    }
 }
 
 .hero-stats {
