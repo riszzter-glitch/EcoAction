@@ -49,6 +49,8 @@ try {
                 ".gif"  { $response.ContentType = "image/gif" }
                 ".svg"  { $response.ContentType = "image/svg+xml" }
                 ".ico"  { $response.ContentType = "image/x-icon" }
+                ".mp4"  { $response.ContentType = "video/mp4" }
+                ".webm" { $response.ContentType = "video/webm" }
                 default { $response.ContentType = "application/octet-stream" }
             }
             
