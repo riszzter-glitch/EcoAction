@@ -121,7 +121,9 @@
 
 .campaign-cta {
     margin-top: var(--spacing-3xl);
-    background: var(--gradient-eco);
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('po.jpeg');
+    background-size: cover;
+    background-position: center;
     padding: var(--spacing-2xl);
     border-radius: var(--radius-xl);
     text-align: center;
