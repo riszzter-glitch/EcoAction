@@ -319,7 +319,7 @@ ul {
 
 .hero-subtitle {
     font-size: clamp(1rem, 2vw, 1.25rem);
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
     opacity: 0.95;
     animation: fadeInUp 0.8s ease 0.2s backwards;
 }
@@ -329,13 +329,13 @@ ul {
     gap: var(--spacing-md);
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: var(--spacing-2xl);
+    margin-bottom: var(--spacing-xl);
     animation: fadeInUp 0.8s ease 0.4s backwards;
 }
 
 /* Inline Video Styling */
 .hero-video-wrapper {
-    margin: var(--spacing-md) auto var(--spacing-xl);
+    margin: var(--spacing-sm) auto var(--spacing-md);
     max-width: 700px;
     /* Batasi lebar di desktop agar rapi */
     width: 100%;
@@ -360,7 +360,7 @@ ul {
     bottom: 20px;
     left: 20px;
     right: 80px;
-    /* Jarak untuk tombol audio */
+    /* Jarak untuk tombol video & audio */
     background: rgba(0, 0, 0, 0.6);
     color: var(--white);
     padding: 12px 20px;
@@ -380,10 +380,16 @@ ul {
     transform: translateY(-2px);
 }
 
-.audio-control-btn {
+.video-controls {
     position: absolute;
     bottom: 20px;
     right: 20px;
+    display: flex;
+    gap: 15px;
+    z-index: 10;
+}
+
+.video-control-btn {
     background: rgba(0, 0, 0, 0.6);
     color: var(--white);
     border: 2px solid rgba(255, 255, 255, 0.5);
@@ -394,18 +400,17 @@ ul {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 10;
     transition: all 0.3s ease;
     backdrop-filter: blur(4px);
 }
 
-.audio-control-btn:hover {
+.video-control-btn:hover {
     background: var(--primary-green);
     transform: scale(1.1);
     border-color: var(--white);
 }
 
-.audio-control-btn i {
+.video-control-btn i {
     font-size: 1.2rem;
 }
 
@@ -418,11 +423,32 @@ ul {
     }
 
     .video-caption-overlay {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         padding: 10px 15px;
         bottom: 15px;
         left: 15px;
-        right: 70px;
+        right: 15px;
+        /* Full width for caption */
+        border-left-width: 3px;
+    }
+
+    .video-controls {
+        top: 15px;
+        bottom: auto;
+        right: 15px;
+        gap: 8px;
+    }
+
+    .video-control-btn {
+        width: 36px;
+        height: 36px;
+        border-width: 1.5px;
+        background: rgba(0, 0, 0, 0.4);
+        /* Slightly more transparent on mobile to be less intrusive */
+    }
+
+    .video-control-btn i {
+        font-size: 0.9rem;
     }
 }
 

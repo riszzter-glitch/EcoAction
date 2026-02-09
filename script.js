@@ -17,32 +17,77 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeBackToTop();
     initializeSmoothScroll();
     initializeEcoIcons(); // Add eco icons to sections
-    initializeAudioControl(); // Initialize audio toggle for hero video
+    initializeVideoControls(); // Initialize video controls for hero video
 });
 
 // ============================================
 // AUDIO CONTROL
 // ============================================
 
-function initializeAudioControl() {
+function initializeVideoControls() {
     const video = document.getElementById('heroVideo');
+    const videoWrapper = document.querySelector('.hero-video-wrapper');
     const audioBtn = document.getElementById('audioToggle');
+    const playBtn = document.getElementById('playPauseToggle');
 
-    if (!video || !audioBtn) return;
+    if (!video) return;
 
-    audioBtn.addEventListener('click', function () {
-        if (video.muted) {
-            video.muted = false;
-            audioBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-            audioBtn.style.background = 'var(--primary-green)';
-            audioBtn.style.borderColor = 'var(--white)';
-        } else {
-            video.muted = true;
-            audioBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-            audioBtn.style.background = 'rgba(0, 0, 0, 0.6)';
-            audioBtn.style.borderColor = 'rgba(255, 255, 255, 0.5)';
-        }
-    });
+    // Toggle Play/Pause on Video Click (Wrapper covers video + overlay)
+    if (videoWrapper) {
+        videoWrapper.style.cursor = 'pointer'; // Indicate it's clickable
+        videoWrapper.addEventListener('click', function (e) {
+            // Ignore clicks on control buttons to avoid conflict
+            // (Buttons use stopPropagation, but this is an extra safety check)
+            if (e.target.closest('.video-control-btn')) return;
+
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
+    }
+
+    // Audio Toggle
+    if (audioBtn) {
+        audioBtn.addEventListener('click', function (e) {
+            e.stopPropagation(); // Prevent triggering wrapper click
+            if (video.muted) {
+                video.muted = false;
+                audioBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                audioBtn.style.background = 'var(--primary-green)';
+                audioBtn.style.borderColor = 'var(--white)';
+            } else {
+                video.muted = true;
+                audioBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                audioBtn.style.background = 'rgba(0, 0, 0, 0.6)';
+                audioBtn.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+            }
+        });
+    }
+
+    // Play/Pause Toggle Button
+    if (playBtn) {
+        playBtn.addEventListener('click', function (e) {
+            e.stopPropagation(); // Prevent triggering wrapper click
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
+
+        // Update button state using video events (covers all toggle methods)
+        video.addEventListener('play', function () {
+            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            playBtn.style.background = 'rgba(0, 0, 0, 0.6)';
+        });
+
+        video.addEventListener('pause', function () {
+            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            playBtn.style.background = 'var(--primary-green)';
+        });
+    }
 }
 
 // ============================================
